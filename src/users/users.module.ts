@@ -22,7 +22,6 @@ import { UsersController } from './controllers/users.controller';
 import { UsersService } from './services/users.service';
 import { User } from './entities/user.entity';
 
-
 @Module({
   imports: [HttpModule, TypeOrmModule.forFeature([User, Category, Course, Character])],
   controllers: [CategoriesController, CoursesController, UsersController, CharactersController],

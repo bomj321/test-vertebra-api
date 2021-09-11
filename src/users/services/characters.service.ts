@@ -1,9 +1,10 @@
-import { Injectable, HttpService } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { map } from 'rxjs/operators';
-import { Character } from '../entities/character.entity';
+import { HttpService } from '@nestjs/axios';
 
+import { Character } from '../entities/character.entity';
 import { CreateCharacterDto } from '../dtos/character.dto';
 
 
@@ -18,20 +19,27 @@ export class CharactersService {
     return this.characterRepo.find();
   }
 
-  createFromAPI() {
-    return this.http.get('https://rickandmortyapi.com/api/character')
-      .pipe(
-        map(response => response.data)
-      );
+  async createFromAPI() {
+
+
+    let response = await this.http.get('https://rickandmortyapi.com/api/character').toPromise();
+    await this.remove();
+    if (response.data && response.data.results) {
+      await Promise.all(response.data.results.map(async (element) => {
+        const newCharacter = await this.characterRepo.create(element)
+        await this.characterRepo.save(newCharacter);
+      }));
+    }
+
   }
 
   async create(data: CreateCharacterDto) {
-    const newCharacter = this.characterRepo.create(data);
+    const newCharacter = await this.characterRepo.create(data);
     return this.characterRepo.save(newCharacter);
 
   }
 
-  async remove() {
+  remove() {
     return this.characterRepo.query(`DELETE FROM characters`);
   }
 

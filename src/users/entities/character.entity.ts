@@ -15,16 +15,16 @@ export class Character {
   @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @Column({ type: 'varchar', length: 30 })
+  @Column({ type: 'varchar', length: 100 })
   status: string;
 
-  @Column({ type: 'varchar', length: 30 })
+  @Column({ type: 'varchar', length: 100 })
   species: string;
 
-  @Column({ type: 'varchar', length: 30 })
+  @Column({ type: 'varchar', length: 100 })
   type: string;
 
-  @Column({ type: 'varchar', length: 30 })
+  @Column({ type: 'varchar', length: 100 })
   gender: string;
 
   @Column({ type: 'varchar', length: 300 })

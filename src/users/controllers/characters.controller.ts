@@ -5,7 +5,6 @@ import {
   Body,
   Delete,
   UseGuards,
-  Req
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CharactersService } from '../services/characters.service';
@@ -21,23 +20,23 @@ import { Public } from '../../auth/decorators/public.decorator';
 export class CharactersController {
   constructor(private charactersService: CharactersService) { }
 
-
+  @Public()
   @Get()
   findAll() {
     return this.charactersService.findAll();
   }
 
-  @Post()
-  create(@Body() payload: CreateCharacterDto) {
-    return this.charactersService.create(payload);
-  }
-
   @Public()
-  @Post('api')
+  @Get('api')
   createFromAPI() {
     return this.charactersService.createFromAPI();
   }
 
+
+  @Post()
+  create(@Body() payload: CreateCharacterDto) {
+    return this.charactersService.create(payload);
+  }
 
   @Delete()
   remove() {
