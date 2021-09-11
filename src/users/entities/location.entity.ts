@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany
 } from 'typeorm';
+
+import { Episode } from './episode.entity';
+
 
 
 @Entity({ name: 'locations' })
@@ -32,5 +36,8 @@ export class Location {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateAt: Date;
+
+  @OneToMany(() => Episode, (episode) => episode.location)
+  episodes: Episode[];
 
 }

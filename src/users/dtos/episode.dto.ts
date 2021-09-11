@@ -2,21 +2,27 @@ import {
   IsString,
   IsNotEmpty,
   IsPositive,
-  IsOptional,
+  IsArray,
 } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
-export class CreateCategoryDto {
+export class CreateEpisodeDto {
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
   readonly name: string;
 
-  @IsOptional()
   @IsPositive()
+  @IsNotEmpty()
   @ApiProperty()
-  readonly userId: number;
+  readonly locationId: number;
+
+  @IsArray()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly charactersIds: number[];
+
 }
 
-export class UpdateCategoryDto extends PartialType(CreateCategoryDto) { }
+export class UpdateEpisodeDto extends PartialType(CreateEpisodeDto) { }

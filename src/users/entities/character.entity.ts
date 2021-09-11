@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany
 } from 'typeorm';
+
+import { Episode } from './episode.entity';
 
 
 @Entity({ name: 'characters' })
@@ -41,5 +44,8 @@ export class Character {
     default: () => 'CURRENT_TIMESTAMP',
   })
   updateAt: Date;
+
+  @ManyToMany(() => Episode, (episode) => episode.characters)
+  episodes: Episode[]
 
 }

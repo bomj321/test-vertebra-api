@@ -5,12 +5,10 @@ import {
   Body,
   UseGuards
 } from '@nestjs/common';
-import { Request } from 'express';
 import { ApiTags } from '@nestjs/swagger';
 import { UsersService } from '../services/users.service';
 import { CreateUserDto } from '../dtos/user.dto';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
-import { PayloadToken } from 'src/auth/models/token.model';
 
 import { Public } from '../../auth/decorators/public.decorator';
 
