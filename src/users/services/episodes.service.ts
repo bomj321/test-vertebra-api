@@ -82,9 +82,10 @@ export class EpisodesService {
     });
     const character = await this.characterRepo.findOne(characterId);
 
-
-    if (!character) {
-      episode.characters.push(character);
+    if (character) {
+      if (episode.characters.filter(e => e.id === characterId).length === 0) {
+        episode.characters.push(character);
+      }
     }
     return this.episodeRepo.save(episode);
 

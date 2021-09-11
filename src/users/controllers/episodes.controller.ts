@@ -57,7 +57,7 @@ export class EpisodesController {
     return this.episodesService.remove(id);
   }
 
-  @Delete(':id/category/:characterId')
+  @Delete(':id/character/:characterId')
   deleteCategory(
     @Param('id', ParseIntPipe) id: number,
     @Param('characterId', ParseIntPipe) characterId: number
@@ -65,11 +65,11 @@ export class EpisodesController {
     return this.episodesService.removeCharacterByEpisode(id, characterId);
   }
 
-  @Put(':id/category/:categoryId')
+  @Put(':id/character/:characterId')
   addCategoryToProduct(
-    @Param('id', ParseIntPipe) idProduct: number,
+    @Param('id', ParseIntPipe) id: number,
     @Param('characterId', ParseIntPipe) idCharacter: number,
   ) {
-    return this.episodesService.addCharacterToEpisode(idProduct, idCharacter);
+    return this.episodesService.addCharacterToEpisode(id, idCharacter);
   }
 }
