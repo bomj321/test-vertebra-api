@@ -11,7 +11,7 @@ import { PartialType, ApiProperty } from '@nestjs/swagger';
 export class CreateUserDto {
   @IsString()
   @IsEmail()
-  @ApiProperty({ description: 'the email of user' })
+  @ApiProperty({ description: 'The email of user' })
   readonly email: string;
 
   @IsString()
@@ -20,17 +20,6 @@ export class CreateUserDto {
   @ApiProperty()
   readonly password: string;
 
-  @ApiProperty()
-  readonly role: string;
-
-  @IsOptional()
-  @ApiProperty()
-  adminId: number;
-
-  @IsOptional()
-  @IsPositive()
-  @ApiProperty()
-  readonly customerId: number;
 }
 
 export class UpdateUserDto extends PartialType(CreateUserDto) { }

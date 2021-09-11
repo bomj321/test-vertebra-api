@@ -20,11 +20,6 @@ import { Public } from '../../auth/decorators/public.decorator';
 export class UsersController {
   constructor(private usersService: UsersService) { }
 
-  findAll(@Req() req: Request) {
-    const user = req.user as PayloadToken;
-    return this.usersService.findAll(user.sub);
-  }
-
   @Public()
   @Post()
   create(@Body() payload: CreateUserDto) {

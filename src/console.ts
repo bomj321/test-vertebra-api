@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { CharactersService } from './users/services/characters.service';
 import { LocationsService } from './users/services/locations.service';
+import { UsersService } from './users/services/users.service';
 
 
 async function bootstrap() {
@@ -19,6 +20,13 @@ async function bootstrap() {
     case 'create-locations':
       const locationsService = application.get(LocationsService);
       await locationsService.createFromAPI().then(() => console.log('Locations added'));
+      break;
+
+    case 'create-user-admin':
+      const usersService = application.get(UsersService);
+      await usersService.create({ email: "admin@admin.com", password: '123456' }).then(() => {
+        console.log(`User: admin@admin.com, password:123456 added`)
+      });
       break;
     default:
       console.log('Command not found');
