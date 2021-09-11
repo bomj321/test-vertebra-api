@@ -17,15 +17,20 @@ import { CharactersService } from './services/characters.service';
 import { Character } from './entities/character.entity';
 
 
+import { LocationsController } from './controllers/locations.controller';
+import { LocationsService } from './services/locations.service';
+import { Location } from './entities/location.entity';
+
+
 
 import { UsersController } from './controllers/users.controller';
 import { UsersService } from './services/users.service';
 import { User } from './entities/user.entity';
 
 @Module({
-  imports: [HttpModule, TypeOrmModule.forFeature([User, Category, Course, Character])],
-  controllers: [CategoriesController, CoursesController, UsersController, CharactersController],
-  providers: [CategoriesService, CoursesService, UsersService, CharactersService],
+  imports: [HttpModule, TypeOrmModule.forFeature([User, Category, Course, Character, Location])],
+  controllers: [CategoriesController, CoursesController, UsersController, CharactersController, LocationsController],
+  providers: [CategoriesService, CoursesService, UsersService, CharactersService, LocationsService],
   exports: [UsersService]
 })
 export class UsersModule { }

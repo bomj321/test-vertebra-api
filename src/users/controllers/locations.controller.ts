@@ -7,26 +7,26 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CharactersService } from '../services/characters.service';
+import { LocationsService } from '../services/locations.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { Public } from '../../auth/decorators/public.decorator';
 
 
 
 @UseGuards(JwtAuthGuard)
-@Controller('characters')
-@ApiTags('characters')
-export class CharactersController {
-  constructor(private charactersService: CharactersService) { }
+@Controller('locations')
+@ApiTags('locations')
+export class LocationsController {
+  constructor(private locationsService: LocationsService) { }
 
   @Public()
   @Get()
   findAll() {
-    return this.charactersService.findAll();
+    return this.locationsService.findAll();
   }
 
   @Delete()
   remove() {
-    return this.charactersService.remove();
+    return this.locationsService.remove();
   }
 }

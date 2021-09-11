@@ -7,8 +7,8 @@ import {
 } from 'typeorm';
 
 
-@Entity({ name: 'characters' })
-export class Character {
+@Entity({ name: 'locations' })
+export class Location {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -16,19 +16,10 @@ export class Character {
   name: string;
 
   @Column({ type: 'varchar', length: 100, nullable: true })
-  status: string;
-
-  @Column({ type: 'varchar', length: 100, nullable: true })
-  species: string;
-
-  @Column({ type: 'varchar', length: 100, nullable: true })
   type: string;
 
   @Column({ type: 'varchar', length: 100, nullable: true })
-  gender: string;
-
-  @Column({ type: 'varchar', length: 300, nullable: true })
-  image: string;
+  dimension: string;
 
   @CreateDateColumn({
     type: 'timestamptz',
