@@ -4,7 +4,11 @@ import { Repository } from 'typeorm';
 import { HttpService } from '@nestjs/axios';
 
 import { Location } from '../entities/location.entity';
-import { CreateLocationDto } from '../dtos/location.dto';
+import { CreateLocationDto, FilterLocationDto } from '../dtos/location.dto';
+
+import {
+  paginate,
+} from 'nestjs-typeorm-paginate';
 
 
 @Injectable()
@@ -14,8 +18,14 @@ export class LocationsService {
     private http: HttpService
   ) { }
 
-  findAll() {
-    return this.locationRepo.find();
+  async findAll(params?: FilterLocationDto) {
+
+    if (params && params.page && params.limit) {
+      return paginate(this.locationRepo, params);
+    } else {
+      return paginate(this.locationRepo, { page: 1, limit: 10 });
+    }
+
   }
 
   async createFromAPI() {

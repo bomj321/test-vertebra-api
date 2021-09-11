@@ -1,6 +1,8 @@
 import {
   IsString,
-  IsOptional
+  IsOptional,
+  IsPositive,
+  Min
 } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
@@ -24,3 +26,18 @@ export class CreateLocationDto {
 }
 
 export class UpdateLocationDto extends PartialType(CreateLocationDto) { }
+
+export class FilterLocationDto {
+
+
+  @IsOptional()
+  @Min(1)
+  @ApiProperty()
+  page: number;
+
+  @IsOptional()
+  @IsPositive()
+  @ApiProperty()
+  limit: number;
+}
+

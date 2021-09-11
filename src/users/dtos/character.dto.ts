@@ -1,7 +1,10 @@
 import {
   IsString,
   IsNotEmpty,
-  IsOptional
+  IsOptional,
+  IsPositive,
+  Min,
+
 } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
@@ -50,3 +53,15 @@ export class CreateCharacterDto {
 }
 
 export class UpdateCharacterDto extends PartialType(CreateCharacterDto) { }
+export class FilterCharacterDto {
+  @IsOptional()
+  @Min(1)
+  @ApiProperty()
+  page: number;
+
+  @IsOptional()
+  @IsPositive()
+  @ApiProperty()
+  limit: number;
+
+}

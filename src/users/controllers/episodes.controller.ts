@@ -7,8 +7,8 @@ import {
   Put,
   Delete,
   Res,
-  UseGuards
-  // ParseIntPipe,
+  UseGuards,
+  Query
 } from '@nestjs/common';
 import { Response } from 'express';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -16,7 +16,7 @@ import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { ParseIntPipe } from '../../common/parse-int.pipe';
 
 
-import { CreateEpisodeDto, UpdateEpisodeDto, } from '../dtos/episode.dto';
+import { CreateEpisodeDto, UpdateEpisodeDto, FilterEpisodeDto } from '../dtos/episode.dto';
 import { EpisodesService } from './../services/episodes.service';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 
@@ -28,8 +28,8 @@ export class EpisodesController {
 
   @Get()
   @ApiOperation({ summary: 'List of episodes' })
-  getProducts() {
-    return this.episodesService.findAll();
+  getProducts(@Query() params: FilterEpisodeDto) {
+    return this.episodesService.findAll(params);
   }
 
 

@@ -4,9 +4,11 @@ import { Repository } from 'typeorm';
 import { HttpService } from '@nestjs/axios';
 
 import { Character } from '../entities/character.entity';
-import { CreateCharacterDto } from '../dtos/character.dto';
+import { CreateCharacterDto, FilterCharacterDto } from '../dtos/character.dto';
 
-
+import {
+  paginate,
+} from 'nestjs-typeorm-paginate';
 @Injectable()
 export class CharactersService {
   constructor(
@@ -14,8 +16,13 @@ export class CharactersService {
     private http: HttpService
   ) { }
 
-  findAll() {
-    return this.characterRepo.find();
+  findAll(params?: FilterCharacterDto) {
+    if (params && params.page && params.limit) {
+      return paginate(this.characterRepo, params);
+    } else {
+      return paginate(this.characterRepo, { page: 1, limit: 10 });
+    }
+
   }
 
   async createFromAPI() {

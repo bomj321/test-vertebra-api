@@ -8,8 +8,11 @@ import { Character } from '../entities/character.entity';
 import { Location } from '../entities/location.entity';
 
 
-import { CreateEpisodeDto, UpdateEpisodeDto } from './../dtos/episode.dto';
+import { CreateEpisodeDto, UpdateEpisodeDto, FilterEpisodeDto } from './../dtos/episode.dto';
 
+import {
+  paginate,
+} from 'nestjs-typeorm-paginate';
 @Injectable()
 export class EpisodesService {
   constructor(
@@ -18,9 +21,13 @@ export class EpisodesService {
     @InjectRepository(Character) private characterRepo: Repository<Character>,
   ) { }
 
-  async findAll() {
+  async findAll(params?: FilterEpisodeDto) {
 
-    return this.episodeRepo.find();
+    if (params && params.page && params.limit) {
+      return paginate(this.episodeRepo, params);
+    } else {
+      return paginate(this.episodeRepo, { page: 1, limit: 10 });
+    }
   }
 
   async findOne(id: number) {

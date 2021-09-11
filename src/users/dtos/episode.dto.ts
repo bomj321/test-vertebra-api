@@ -3,6 +3,8 @@ import {
   IsNotEmpty,
   IsPositive,
   IsArray,
+  IsOptional,
+  Min
 } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
@@ -26,3 +28,18 @@ export class CreateEpisodeDto {
 }
 
 export class UpdateEpisodeDto extends PartialType(CreateEpisodeDto) { }
+
+
+export class FilterEpisodeDto {
+  @IsOptional()
+  @Min(1)
+  @ApiProperty()
+  page: number;
+
+  @IsOptional()
+  @IsPositive()
+  @ApiProperty()
+  limit: number;
+
+}
+
