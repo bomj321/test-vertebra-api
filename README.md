@@ -81,6 +81,7 @@ Nest is [MIT licensed](LICENSE).
 
 ## If you will use docker, use this command to install images
 - docker-compose up -d
+- docker-compose down
 
 ## Others specials commands
 - docker-compose ps
