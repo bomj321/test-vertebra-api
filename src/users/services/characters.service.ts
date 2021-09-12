@@ -22,7 +22,7 @@ export class CharactersService {
       if (params.name) {
         where.name = Like(`%${params.name}%`);
       }
-      return paginate(this.characterRepo, params, { where });
+      return paginate(this.characterRepo, params, { where, order: { 'name': "ASC" } });
     } else {
       return paginate(this.characterRepo, { page: 1, limit: 10 });
     }
