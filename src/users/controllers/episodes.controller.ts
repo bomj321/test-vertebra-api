@@ -44,12 +44,16 @@ export class EpisodesController {
       .then((res) => {
         response.status(200).send(res);
       })
-      .catch((e) => { response.status(500).send({ error: e.detail ? e.detail : e }) });
+      .catch((e) => { response.status(409).send({ error: e.detail ? e.detail : e }) });
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() payload: UpdateEpisodeDto) {
-    return this.episodesService.update(id, payload);
+  update(@Res() response: Response, @Param('id') id: number, @Body() payload: UpdateEpisodeDto) {
+    return this.episodesService.update(id, payload)
+      .then((res) => {
+        response.status(200).send(res);
+      })
+      .catch((e) => { response.status(409).send({ error: e.detail ? e.detail : e }) });
   }
 
   @Delete(':id')
