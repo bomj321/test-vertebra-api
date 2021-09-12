@@ -29,7 +29,7 @@ export class AuthService {
 
     delete user.password; //Only for TYPEORM
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload, { expiresIn: '60m' }),
       ...user,
     };
   }
