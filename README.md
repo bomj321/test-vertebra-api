@@ -94,7 +94,7 @@ Nest is [MIT licensed](LICENSE).
 
 ## What more do you need?
 
-------------ENV
+## .env file
 
 DATABASE_NAME=my_db_vertebra
 DATABASE_PORT=3306
