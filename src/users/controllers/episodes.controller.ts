@@ -56,20 +56,4 @@ export class EpisodesController {
   delete(@Param('id') id: number) {
     return this.episodesService.remove(id);
   }
-
-  @Delete(':id/character/:characterId')
-  deleteCategory(
-    @Param('id', ParseIntPipe) id: number,
-    @Param('characterId', ParseIntPipe) characterId: number
-  ) {
-    return this.episodesService.removeCharacterByEpisode(id, characterId);
-  }
-
-  @Put(':id/character/:characterId')
-  addCategoryToProduct(
-    @Param('id', ParseIntPipe) id: number,
-    @Param('characterId', ParseIntPipe) idCharacter: number,
-  ) {
-    return this.episodesService.addCharacterToEpisode(id, idCharacter);
-  }
 }

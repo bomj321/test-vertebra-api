@@ -72,32 +72,6 @@ export class EpisodesService {
   }
 
 
-  async removeCharacterByEpisode(productId: number, characterId: number) {
-    const episode = await this.episodeRepo.findOne(productId, {
-      relations: ['characters']
-    });
-    episode.characters = episode.characters.filter((item) => {
-      return item.id !== characterId
-    })
-
-    return this.episodeRepo.save(episode);
-  }
-
-  async addCharacterToEpisode(episodeId: number, characterId: number) {
-    const episode = await this.episodeRepo.findOne(episodeId, {
-      relations: ['characters']
-    });
-    const character = await this.characterRepo.findOne(characterId);
-
-    if (character) {
-      if (episode.characters.filter(e => e.id === characterId).length === 0) {
-        episode.characters.push(character);
-      }
-    }
-    return this.episodeRepo.save(episode);
-
-  }
-
   remove(id: number) {
     return this.episodeRepo.delete(id);
   }

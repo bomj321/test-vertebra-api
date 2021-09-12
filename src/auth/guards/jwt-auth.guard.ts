@@ -1,4 +1,4 @@
-import { Injectable, ExecutionContext } from '@nestjs/common';
+import { Injectable, ExecutionContext, ForbiddenException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -16,5 +16,13 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       return true;
     }
     return super.canActivate(context);
+  }
+
+  handleRequest(err, token, info) {
+    // You can throw an exception based on either "info" or "err" arguments
+    if (err || !token) {
+      throw err || new ForbiddenException();
+    }
+    return token;
   }
 }
