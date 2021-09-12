@@ -25,8 +25,8 @@ async function bootstrap() {
     case 'create-user-admin':
       const usersService = application.get(UsersService);
       await usersService.create({ email: "admin@admin.com", password: '123456' }).then(() => {
-        console.log(`User: admin@admin.com, password:123456 added`)
-      });
+        console.log('User: admin@admin.com, password:123456 added')
+      }).catch(() => console.log('This user exists'));
       break;
     default:
       console.log('Command not found');
