@@ -36,14 +36,15 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
+$ npm run start        //FOR DEFAULT USE THE .env FILE
 
 # watch mode
-$ npm run start:dev
+$ npm run start:dev    //FOR DEFAULT USE THE .env FILE
 
 # production mode
-$ npm run start:prod
+$ npm run start:prod   //FOR THIS YOU NEED A .prod.env FILE
 ```
+
 
 ## Test
 
@@ -80,7 +81,6 @@ Nest is [MIT licensed](LICENSE).
 
 ## If you will use docker, use this command to install images
 - docker-compose up -d
-
 
 ## Others specials commands
 - docker-compose ps
