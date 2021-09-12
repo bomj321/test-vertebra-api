@@ -26,7 +26,7 @@ async function bootstrap() {
       const usersService = application.get(UsersService);
       await usersService.create({ email: "admin@admin.com", password: '123456' }).then(() => {
         console.log('User: admin@admin.com, password:123456 added')
-      }).catch(() => console.log('This user exists'));
+      }).catch(() => console.log('User: admin@admin.com, password:123456 already exists in BBDD'));
       break;
     default:
       console.log('Command not found');
