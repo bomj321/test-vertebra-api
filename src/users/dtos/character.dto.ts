@@ -54,6 +54,11 @@ export class CreateCharacterDto {
 
 export class UpdateCharacterDto extends PartialType(CreateCharacterDto) { }
 export class FilterCharacterDto {
+
+  @IsOptional()
+  @ApiProperty()
+  name: string;
+
   @IsOptional()
   @Min(1)
   @ApiProperty()

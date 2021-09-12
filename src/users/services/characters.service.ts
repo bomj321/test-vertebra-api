@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, FindConditions, Like } from 'typeorm';
 import { HttpService } from '@nestjs/axios';
 
 import { Character } from '../entities/character.entity';
@@ -18,7 +18,11 @@ export class CharactersService {
 
   findAll(params?: FilterCharacterDto) {
     if (params && params.page && params.limit) {
-      return paginate(this.characterRepo, params);
+      const where: FindConditions<Character> = {};
+      if (params.name) {
+        where.name = Like(`%${params.name}%`);
+      }
+      return paginate(this.characterRepo, params, { where });
     } else {
       return paginate(this.characterRepo, { page: 1, limit: 10 });
     }
