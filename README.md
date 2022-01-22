@@ -91,7 +91,7 @@ Nest is [MIT licensed](LICENSE).
 - npm run execute create-characters  //COMMAND TO POPULATE TABLE CHARACTERS
 - npm run execute create-locations  //COMMAND TO POPULATE TABLE LOCATIONS
 - npm run execute create-user-admin  //COMMAND TO CREATE AN ADMIN USER
-
+- User: admin@admin.com, password:123456
 
 ## What more do you need?
 
